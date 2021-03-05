@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+
+    <title>Code Quiz using Web APIs</title>
+</head>
+
+<body>
+    <header>
+        <h1>A Quiz to test your knowledge on basic coding concepts!</h1>
+        <nav>
+            <ul>
+                <h4 id="clock">Time Clock</h4>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="highscorelink" class="hslink">
+        <a href="highscores.html">Click here to see your high scores</a>
+    </div>
+
+    <!-- <div id=start-txt class= -->
+
+    <div id="contentbox">
+        <section id="intro">
+          <h1>You think you know your stuff? Let's find out!</h1>
+          <h2>
+            Try to answer as many questions until the timer runs out. Each wrong answer will cost you 8 seconds.
+          </h2>
+          <button id="startbtn" class="strtbtn">Start Quiz</button>
+
+        <div id="quizbox" class="hide">
+            <div id="questions"><p>Question</p>
+                <div id="buttons" class="btns">
+                    <button class="btn">A</button>
+                    <button class="btn">B</button>
+                    <button class="btn">C</button>
+                    <button class="btn">D</button>
+                </div>
+                
+            </div>
+            <button id="nextbtn" class="nxtbtn">Next</button>
+        </section>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/highscores.js"></script>
+</body>
+</html>
+

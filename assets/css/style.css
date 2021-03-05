@@ -1,0 +1,117 @@
+/* header css  */
+
+body {
+    background-color: aqua;
+}
+
+header {
+    border-bottom: black solid 2px;
+}
+
+header h1 {
+    display: inline-block;
+    font-size: 30px;
+    font-family: sans-serif;
+    margin-left: 45px;
+}
+
+header nav {
+    font-size: 18px;
+    padding-top: 10px;
+    margin-right: 50px;
+    float: right;
+    font-family: sans-serif;
+}
+
+#clock {
+    font-size: larger;
+    font-weight: bolder;
+    position: absolute;
+    padding: 10px;
+    margin-top: 14px;
+    right: 78px;
+    top: 0px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 15px;
+}
+
+#questions {
+    font-size: 23px;
+    font-weight: 600;
+    font-family: sans-serif;
+    text-align: center;
+    margin-bottom: 30px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btns {
+    margin-top: 20px;
+}
+
+div button {
+    display: inline-block;
+    text-align: center;
+}
+
+#intro {
+    text-align: center;
+    border-style: solid;
+    border-color: black;
+    border-radius: 15px;
+    margin: 9% 25px 50px 23%;
+    padding: 20px 40px 250px 40px;
+    width: 52%;
+    height: 315px;
+    font-family: sans-serif;
+    box-shadow: 2px black;
+}
+
+#quizbox {
+    text-align: center;
+    margin: 45px 13em 20px 23%;
+    font-size: 20px;
+    height: 315px;
+    font-family: sans-serif;
+}
+
+.hide {
+    display: none;
+}
+
+.strtbtn {
+    margin-top: 50px;
+    background-color: orange;
+    padding: 37px;
+    font-size: 28px;
+    font-family: sans-serif;
+    box-shadow: 2px 2px 2px black;
+}
+
+.nxtbtn {
+    background-color: orange;
+    margin-top: 30px;
+    font-size: 18px;
+    padding: 20px;
+    font-family: sans-serif;
+    box-shadow: 2px 2px 2px black;
+}
+
+.btn {
+    margin-top: 8px;
+    height: 40px;
+    width: 60%;
+    background-color: orange;
+    position: relative;
+    border: 2px solid;
+}    
+    
+.hslink {
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    padding-top: 20px;
+}
