@@ -1,104 +1,135 @@
 var startButton = document.getElementById("startbtn");
-var quizBox = document.getElementById("quizbox");
+var questionsContainer = document.getElementById("question-container");
 var quizClock = document.getElementById("clock");
-var myQuestions = document.getElementById("questions");
-var myButtons = document.getElementById("buttons");
+var introScreen = document.getElementById("intro");
+var questionsElement = document.getElementById("questions");
+var answerButtons = document.getElementById("answer-buttons");
+var nextButton = document.getElementById("nextbtn");
+var submitButton = document.getElementById("submit-btn");
+var submitScreen = document.getElementById("submit-score");
+var theClock;
 var timeClock = 50;
-var daClock;
-var shuffleQuestions, currentQuestion;
 
+var shuffleQuestions, currentQuestion, userName;
+var correctAnswers = 0;
+
+// event listeners for game start button, and next button
 startButton.addEventListener("click", startGame);
+nextButton.addEventListener('click', () => {
+    currentQuestion++
+    nextQuestion();
+});
+
+submitButton.addEventListener("click", function (e) {
+    e.stopPropagation();
+    addScore();
+    window.location.href = "Code-Quiz-HW4/highscores.html"
+});
 
 function startGame() {
     startButton.classList.add("hide");
-    quizBox.classList.remove("hide");
+    introScreen.classList.add("hide");
+    questionsContainer.classList.remove("hide");
     shuffleQuestions = questions.sort(() => Math.random() - .5);
     currentQuestion = 0
-    timerStart= 50;
-    quizClock.textContent = timerStart;
-    daClock = setInterval(alertTime, 1000);
-    nextQuestion()
+    timeAlert();
+    nextQuestion();
+}
+
+function timeAlert() {
+    theClock = setInterval(() => {
+      if (timeClock >= 0) {
+        quizClock.textContent = timeClock;
+        timeClock--;
+      } else if (timeClock === 0) {
+        quizClock.textContent = timeClock;
+        timeClock--;
+      } else {
+        gameOver();
+      }
+    }, 1000);
 }
 
 function nextQuestion() {
+    resetMyQuiz();
     showQuestion(shuffleQuestions[currentQuestion]);
 }
 
 function showQuestion(question) {
-    myQuestions.innerText = question.question
-    question.options.forEach(options => {
+    questionsElement.innerText = question.question;
+    question.options.forEach((answer) => {
         var button = document.createElement("button");
-        button.innerText = options.text;
+        button.innerText = answer.text;
         button.classList.add("btn");
-        if (options.correct) {
-            button.dataset.correct = options.correct;
+        if (answer.correct) {
+            button.dataset.correct = answer.correct;
         }
-        button.addEventListener("click", pickAnswer)
-        myQuestions.appendChild(button);
+        button.addEventListener("click", pickAnswer);
+        answerButtons.appendChild(button);
     });
 }
 
-function alertTime() {
-    if (timeClock > 0) {
-        timeClock--;
-        return quizClock.textContent = timeClock;
+function resetMyQuiz() {
+    nextButton.classList.add("hide");
+    while (answerButtons.firstChild) {
+        answerButtons.removeChild(answerButtons.firstChild);
     }
 }
 
+function pickAnswer(e) {
+    var selectedButton = e.target;
+    var correct = selectedButton.dataset.correct;
+    if (!correct) {
+        timeClock -= 8;
+    }
+    
+    Array.from(answerButtons.children).forEach((button) => {
+        setStatusClass(button, button.dataset.correct);
+    });
 
-function pickAnswer() {
+    if (shuffleQuestions.length > currentQuestion + 1) {
+        nextButton.classList.remove("hide");
+    } else {
+        gameOver()
+    }
 
+    if (selectedButton.dataset = correct) {
+        correctAnswers +=10;
+    }
+    console.log(correctAnswers);
+    document.getElementById("correct-answers").innerHTML = correctAnswers
 }
 
+function setStatusClass(element, correct) {
+    clearStatusClass(element);
+    if (correct) {
+        element.classList.add("correct");
+    } else {
+        element.classList.add("wrong");
+    }
+}
 
-var questions = [
-    {
-        question: "Commonly used data types DO NOT include:",
-        options: [
-            { text: "strings", correct: false },
-            { text: "booleans", correct: false },
-            { text: "alerts", correct: true },
-            { text: "numbers", correct: false}
-        ]
-    },
-]
+function clearStatusClass(element) {
+    element.classList.remove("correct");
+    element.classList.remove("wrong");
+}
 
+function gameOver(timeClock) {
+    questionsContainer.classList.add("hide");
+    introScreen.classList.add("hide");
+    submitScreen.classList.remove("hide");
+    clearInterval(theClock)
+}
 
+function addScore () {
+    userName = document.getElementById('initials').value.trim()
 
+    var newScore = {
+        name: userName,
+        score: correctAnswers
+    };
+    var topScores = JSON.parse(localStorage.getItem("topScores") || "[]");
+    topScores.push(newScore)
+    localStorage.setItem("topScores", JSON.stringify(topScores));
+}
 
-//     {
-//         question: "What html tag is NOT included in the HEAD tag?",
-//         options: ["link", "meta", "title", "header"],
-//         answer: "header"
-//     },
-//     {
-//         question: "The instructions for a function are enclosed within what?.",
-//         options: ["double quotes", "curly brackets", "parentheses", "square brackets"],
-//         answer: "curly brackets"
-//     },
-//     {
-//         question: "Arrays in Javascript can be used to store what?.",
-//         options: ["numbers & strings", "other arrays", "booleans", "all of the above"],
-//         answer: "all of the above"
-//     },
-//     {
-//         question: "A useful tool used during development for debugging and printing content to the debugger is:",
-//         options: ["Python", "terminal", "while loops", "console.log"],
-//         answer: "console log"
-//     },
-//     {
-//         question: "Question 4: A property of an object that is a function is called a what?.",
-//         options: ["method", "string", "stylesheet", "boolean"],
-//         answer: "method"
-//     },
-// ]
-
-// // function startGame() {
-// //     console.log("Started");
-// //     titleScreen.classList.add("hide")
-// //     quizScreen.classList.remove("hide")
-// //     scoreDis.classList.remove("hide")
-// //     timerStart = 75;
-// //     quizTimer = setInterval(timeAlert, 1000);
-// //    showQuestion();
-// // }

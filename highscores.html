@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>High-Scores-Code-Quiz</title>
+
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="containerHead">
+      <button id="scores" onclick='location.href="index.html"'>Home</button>
+      <h1 id="headLine">High Scores!</h1>
+      <div id="timer">
+        <p>Time Remaining: <span id="time">0</span></p>
+      </div>
+    </header>
+    <main>
+      <div class="container" id="highScore">
+        <div class="scoreContainer">
+          <h2>High Score Listings</h2>
+          <h3>What did others get?</h3>
+          <ol id="listScores"></ol>
+          <div class="btnGroup">
+            <button class="resetBtn btn" id="resetBtn">PLAY AGAIN</button>
+            <button class="clearScore btn" id="clearScore">Clear Scores</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="assets/js/highscores.js"></script>
+  </body>
+</html>
