@@ -1,8 +1,10 @@
 # Code-Quiz-HW4
 
-[Description](#desc)
-[Address](#address)
-[Contributions](#contributions)
+1. [Description](#desc)
+2. [Address](#address)
+3. [Contributions](#contributions)
+
+### Quick Coding Quiz
 
 <a name="desc"></a>
 ## 1. Description
@@ -28,7 +30,7 @@ From here, I can either play again, or check my high scores.
 <a name="address"></a>
 ## 2. Address
 
-[github pages site]
+[github pages site] https://samohtebag.github.io/Code-Quiz-HW4/
 
 [github repository site] https://github.com/samohtebag/Code-Quiz-HW4
 
